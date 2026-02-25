@@ -1,6 +1,11 @@
 package com.treinamento.api.demo.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "produtos")
@@ -10,29 +15,19 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-<<<<<<< HEAD
 	@NotBlank(message = "Nome do Porduto é Obrigatório")
 	@Size(min = 3, max = 100, message = "Nome do Produto deve ter entre 3 e 100 caracteres")
 	@Column(name = "nome", nullable = false, length = 100)
 	private String nome;
 
 	@NotNull(message = "Preço é obrigatório")
-	@Min(value = 1.00, message = "valor mínimo é R$ 1,00")
+	@Min(value = 1, message = "valor mínimo é R$ 1,00")
 	@Column(name = "preco")
 	private Double preco;
 
 	@NotNull(message = "Quantidade é obrigatória")
 	@Min(value = 1, message = "Quantidade mínima de produtos é 1 item")
 	@Max(value = 99, message = "Quantidade máxima de produtos é 99 itens")
-=======
-	@Column(name = "nome", nullable = false, length = 100)
-	private String nome;
-
-	@Column(name = "preco")
-	private Double preco;
-
->>>>>>> c0f54ba (Atualiazação do recurso "produto", model para entity, conversão do repositório simulado para JPA (Interface), adaptação do service  para novo repository)
-	@Column(name = "quantidade")
 	private Integer quantidade;
 	
 	public Produto() {}
