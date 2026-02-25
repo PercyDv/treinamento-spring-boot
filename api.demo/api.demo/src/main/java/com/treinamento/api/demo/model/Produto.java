@@ -10,6 +10,7 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+<<<<<<< HEAD
 	@NotBlank(message = "Nome do Porduto é Obrigatório")
 	@Size(min = 3, max = 100, message = "Nome do Produto deve ter entre 3 e 100 caracteres")
 	@Column(name = "nome", nullable = false, length = 100)
@@ -23,6 +24,14 @@ public class Produto {
 	@NotNull(message = "Quantidade é obrigatória")
 	@Min(value = 1, message = "Quantidade mínima de produtos é 1 item")
 	@Max(value = 99, message = "Quantidade máxima de produtos é 99 itens")
+=======
+	@Column(name = "nome", nullable = false, length = 100)
+	private String nome;
+
+	@Column(name = "preco")
+	private Double preco;
+
+>>>>>>> c0f54ba (Atualiazação do recurso "produto", model para entity, conversão do repositório simulado para JPA (Interface), adaptação do service  para novo repository)
 	@Column(name = "quantidade")
 	private Integer quantidade;
 	
