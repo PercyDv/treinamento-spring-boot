@@ -1,9 +1,22 @@
 package com.treinamento.api.demo.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "produtos")
 public class Produto {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(name = "nome", nullable = false, length = 100)
 	private String nome;
+
+	@Column(name = "preco")
 	private Double preco;
+
+	@Column(name = "quantidade")
 	private Integer quantidade;
 	
 	public Produto() {}
