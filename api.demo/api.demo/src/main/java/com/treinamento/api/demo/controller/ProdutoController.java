@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.treinamento.api.demo.model.Produto;
 import com.treinamento.api.demo.service.ProdutoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
@@ -25,7 +27,7 @@ public class ProdutoController {
     private ProdutoService ProdutoService;
     
     @PostMapping
-    public ResponseEntity<Produto> criar(@RequestBody Produto produto) {
+    public ResponseEntity<Produto> criar(@Valid @RequestBody Produto produto) {
         Produto novoProduto = ProdutoService.salvar(produto);
         return new ResponseEntity<>(novoProduto, HttpStatus.CREATED);
     }
@@ -43,7 +45,7 @@ public class ProdutoController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<Produto> atualizar(@PathVariable Long id, @RequestBody Produto produto) {
+    public ResponseEntity<Produto> atualizar(@PathVariable Long id, @Valid @RequestBody Produto produto) {
         Produto produtoAtualizado = ProdutoService.atualizar(id, produto);
         return new ResponseEntity<>(produtoAtualizado, HttpStatus.OK);
     }
