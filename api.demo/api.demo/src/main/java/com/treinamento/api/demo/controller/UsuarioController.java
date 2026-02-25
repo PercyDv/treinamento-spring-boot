@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.treinamento.api.demo.model.Usuario;
 import com.treinamento.api.demo.service.UsuarioService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -25,7 +27,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     
     @PostMapping
-    public ResponseEntity<Usuario> criar(@RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> criar(@Valid @RequestBody Usuario usuario) {
         Usuario novoUsuario = usuarioService.salvar(usuario);
         return new ResponseEntity<>(novoUsuario, HttpStatus.CREATED);
     }
@@ -43,7 +45,7 @@ public class UsuarioController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> atualizar(@PathVariable Long id,@Valid @RequestBody Usuario usuario) {
         Usuario usuarioAtualizado = usuarioService.atualizar(id, usuario);
         return new ResponseEntity<>(usuarioAtualizado, HttpStatus.OK);
     }
