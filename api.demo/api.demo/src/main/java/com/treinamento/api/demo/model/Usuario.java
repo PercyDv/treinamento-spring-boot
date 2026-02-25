@@ -1,11 +1,24 @@
 package com.treinamento.api.demo.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(name = "nome", nullable = false, length = 100)
 	private String nome;
+
+	@Column(name = "email", unique = true, nullable = false)
 	private String email;
+
+	@Column(name = "idade")
 	private Integer idade;
-	
+
 	public Usuario() {}
 
 	public Usuario(Long id, String nome, String email, Integer idade) {
@@ -46,6 +59,4 @@ public class Usuario {
 	public void setIdade(Integer idade) {
 		this.idade = idade;
 	}
-	
-	
 }
