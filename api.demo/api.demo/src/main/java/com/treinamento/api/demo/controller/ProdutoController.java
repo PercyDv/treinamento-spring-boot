@@ -23,36 +23,39 @@ import jakarta.validation.Valid;
 @RequestMapping("/produtos")
 public class ProdutoController {
     
-    @Autowired
-    private ProdutoService ProdutoService;
+    private final ProdutoService produtoService;
+
+    public ProdutoController(ProdutoService produtoService) {
+        this.produtoService = produtoService;
+    }
     
     @PostMapping
     public ResponseEntity<Produto> criar(@Valid @RequestBody Produto produto) {
-        Produto novoProduto = ProdutoService.salvar(produto);
+        Produto novoProduto = produtoService.salvar(produto);
         return new ResponseEntity<>(novoProduto, HttpStatus.CREATED);
     }
     
     @GetMapping
     public ResponseEntity<List<Produto>> listarTodos() {
-        List<Produto> produtos = ProdutoService.listarTodos();
+        List<Produto> produtos = produtoService.listarTodos();
         return new ResponseEntity<>(produtos, HttpStatus.OK);
     }
     
     @GetMapping("/{id}")
     public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
-        Produto produto = ProdutoService.buscarPorId(id);
+        Produto produto = produtoService.buscarPorId(id);
         return new ResponseEntity<>(produto, HttpStatus.OK);
     }
     
     @PutMapping("/{id}")
     public ResponseEntity<Produto> atualizar(@PathVariable Long id, @Valid @RequestBody Produto produto) {
-        Produto produtoAtualizado = ProdutoService.atualizar(id, produto);
+        Produto produtoAtualizado = produtoService.atualizar(id, produto);
         return new ResponseEntity<>(produtoAtualizado, HttpStatus.OK);
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        ProdutoService.deletar(id);
+        produtoService.deletar(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

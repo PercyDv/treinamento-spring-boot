@@ -30,7 +30,8 @@ public class UsuarioService {
     }
     
     public Usuario atualizar(Long id, Usuario usuario) {
-        Usuario usuarioExistente = buscarPorId(id);
+        Usuario usuarioExistente = buscarPorId(id)
+            .orElseThrow(() -> new RuntimeException("Usuário não encontrado com id:"));
         usuarioExistente.setNome(usuario.getNome());
         usuarioExistente.setEmail(usuario.getEmail());
         usuarioExistente.setIdade(usuario.getIdade());

@@ -9,8 +9,7 @@ import java.util.List;
 
 @Service
 public class ProdutoService {
-    
-    @Autowired
+
     private ProdutoRepository produtoRepository;
     
     public Produto salvar(Produto produto) {
@@ -30,7 +29,8 @@ public class ProdutoService {
     }
     
     public Produto atualizar(Long id, Produto produto) {
-        Produto produtoExistente = buscarPorId(id);
+        Produto produtoExistente = buscarPorId(id)
+            .orElseThrow(() -> new RuntimeException("Produto não encontrado com id:"));
         produtoExistente.setNome(produto.getNome());
         produtoExistente.setPreco(produto.getPreco());
         produtoExistente.setQuantidade(produto.getQuantidade());

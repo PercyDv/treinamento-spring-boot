@@ -1,73 +1,32 @@
 package com.treinamento.api.demo.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @Entity
-@Table(name = "produtos")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank(message = "Nome do Porduto é Obrigatório")
-	@Size(min = 3, max = 100, message = "Nome do Produto deve ter entre 3 e 100 caracteres")
-	@Column(name = "nome", nullable = false, length = 100)
+	@NotBlank
 	private String nome;
 
-	@NotNull(message = "Preço é obrigatório")
-	@Min(value = 1, message = "valor mínimo é R$ 1,00")
-	@Column(name = "preco")
+	@NotNull
+	@Min(1)
 	private Double preco;
 
-	@NotNull(message = "Quantidade é obrigatória")
-	@Min(value = 1, message = "Quantidade mínima de produtos é 1 item")
-	@Max(value = 99, message = "Quantidade máxima de produtos é 99 itens")
+	@NotNull
+	@Min(1)
+	@Max(99)
 	private Integer quantidade;
 	
-	public Produto() {}
-
-	public Produto(Long id, String nome, Double preco, Integer quantidade) {
-		this.id = id;
-		this.nome = nome;
-		this.preco = preco;
-		this.quantidade = quantidade;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(Double preco) {
-		this.preco = preco;
-	}
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
 }
