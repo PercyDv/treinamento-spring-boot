@@ -17,11 +17,13 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank
+	@NotBlank(message = "nome do produto é obrigatório")
+	@Size(min = 3, max = 100)
+	@Column(nullable = false, length = 100)
 	private String nome;
 
 	@NotNull
-	@Min(1)
+	@Min(value = 1, message = "Valor mínimo é 1 real")
 	private Double preco;
 
 	@NotNull

@@ -2,7 +2,6 @@ package com.treinamento.api.demo.service;
 
 import com.treinamento.api.demo.model.Produto;
 import com.treinamento.api.demo.repository.ProdutoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

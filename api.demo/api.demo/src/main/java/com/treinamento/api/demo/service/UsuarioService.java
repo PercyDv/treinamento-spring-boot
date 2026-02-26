@@ -2,7 +2,6 @@ package com.treinamento.api.demo.service;
 
 import com.treinamento.api.demo.model.Usuario;
 import com.treinamento.api.demo.repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
